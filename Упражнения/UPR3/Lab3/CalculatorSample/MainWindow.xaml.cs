@@ -30,6 +30,13 @@ namespace CalculatorSample
             DIVISION, MULTIPLICATION
         };
         private Operation operation;
+
+        private enum MathOperation
+        {
+            NO_OPERATION, COS, SIN,
+            EXP, LOG, SQRT, DIVIDE
+        };
+        private MathOperation mathOperation;
         #endregion
         #region Constuctor
         public MainWindow()
@@ -43,7 +50,28 @@ namespace CalculatorSample
         {
             Environment.Exit(0);
         }
-
+        /// <summary>
+        /// Clears the window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            TxtInput.Text = "0";
+        }
+        /// <summary>
+        /// clears all numbers and operations to now
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearAll_Click(object sender, RoutedEventArgs e)
+        {
+            TxtInput.Text = "0";
+            operation = Operation.NO_OPERATION;
+            firstNumber = 0;
+            secondNumber = 0;
+            result = 0;
+        }
         /// <summary>
         /// Event handler for digit click
         /// </summary>
@@ -90,7 +118,41 @@ namespace CalculatorSample
             TxtInput.Text = "0";
 
         }
+        private void MathOperation_Click(object sender, RoutedEventArgs e)
+        {
+            if (!double.TryParse(TxtInput.Text, out firstNumber))
+            {
+                MessageBox.Show("Wrong input. Try again...");
+                TxtInput.Text = "0";
+                return;
+            }
+            string operationSign = ((Button)sender).Content.ToString()!;
 
+            mathOperation = operationSign switch
+            {
+                "SIN" => MathOperation.SIN,
+                "COS" => MathOperation.COS,
+                "EXP" => MathOperation.EXP,
+                "LOG" => MathOperation.LOG,
+                "√" => MathOperation.SQRT,
+                "1/x" => MathOperation.DIVIDE,
+                _ => MathOperation.NO_OPERATION
+            };
+            result = mathOperation switch
+            {
+                MathOperation.SQRT => Math.Sqrt(firstNumber),
+                MathOperation.COS => Math.Cos(firstNumber),
+                MathOperation.SIN => Math.Sin(firstNumber),
+                MathOperation.LOG => Math.Log(firstNumber),
+                MathOperation.EXP => Math.Exp(firstNumber),
+                MathOperation.DIVIDE=>1/firstNumber,
+                _=>0
+            } ;
+            //display
+            mathOperation = MathOperation.NO_OPERATION;
+            TxtInput.Text = "" + result;
+
+        }
         private void Compute_Click(object sender, RoutedEventArgs e)
         {
             //read second number

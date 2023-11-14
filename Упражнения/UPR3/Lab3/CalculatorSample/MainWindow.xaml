@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:CalculatorSample"
         mc:Ignorable="d"
         
-    Title="Calculator" Height="216" Width="298" x:Name="frmCalc" BorderBrush="Black" Background="DarkGray">
-    <Grid Width="272" x:Name="grd" Margin="4,4,4,4">
+    Title="Calculator" Height="216" Width="410" x:Name="frmCalc" BorderBrush="Black" Background="DarkGray">
+    <Grid x:Name="grd" Margin="10,4,10,4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
         <TextBox Height="20" Margin="8,8,8,0" x:Name="TxtInput" VerticalAlignment="Top" TextAlignment="Right" TextWrapping="NoWrap" BorderBrush="LightGray" Text="0"/>
-        <StackPanel  Margin="8,41,0,10" x:Name="pnl1" Width="88" HorizontalAlignment="Left" Background="LightGray" >
+        <StackPanel  Margin="8,41,0,10" x:Name="pnl1" Width="88" HorizontalAlignment="Left" Background="LightGray" Grid.RowSpan="2" >
             <StackPanel.BitmapEffect>
                 <OuterGlowBitmapEffect GlowColor="Black"  GlowSize="2"/>
             </StackPanel.BitmapEffect>
@@ -25,7 +29,7 @@
             <Button Height="24" Margin="4,4,0,0" x:Name="btn0" VerticalAlignment="Top" Width="24" HorizontalAlignment="left" Content="0" Click="Digit_Click"/>
             <Button Height="24" Margin="4,-24,4,0" x:Name="btn00" VerticalAlignment="Top" Width="52" HorizontalAlignment="Right" Content="00" Click="Digit_Click"/>
         </StackPanel>
-        <StackPanel   Margin="122.5,41,77.5,10" x:Name="pnl2" Width="72"  Background="LightGray">
+        <StackPanel   Margin="125,41,180,10" x:Name="pnl2" Width="72"  Background="LightGray" Grid.RowSpan="2">
             <StackPanel.BitmapEffect>
                 <OuterGlowBitmapEffect GlowColor="Black"  GlowSize="2"/>
             </StackPanel.BitmapEffect>
@@ -37,14 +41,27 @@
             <Button Height="24" Margin="8,-24,0,0" x:Name="btnPoint" VerticalAlignment="Top" Width="24" HorizontalAlignment="Left" Content="." Click="Digit_Click"/>
 
         </StackPanel>
-        <StackPanel Margin="0,41,8,57" x:Name="pnl3" Width="48" HorizontalAlignment="Right"  Background="LightGray">
+        <StackPanel   Margin="224,41,81,10" x:Name="pnl2_Copy" Width="72"  Background="LightGray" Grid.RowSpan="2">
+            <StackPanel.BitmapEffect>
+                <OuterGlowBitmapEffect GlowColor="Black"  GlowSize="2"/>
+            </StackPanel.BitmapEffect>
+            <Button Height="24" Margin="0,4,8,0" x:Name="btnSIN" Width="25" HorizontalAlignment="Right" Content="SIN" Click="MathOperation_Click"/>
+            <Button Height="24" Margin="0,4,8,0" x:Name="btnCOS" Width="25" HorizontalAlignment="Right" Content="COS" Click="MathOperation_Click"/>
+            <Button Height="24" Margin="0,4,8,0" x:Name="btnSQRT" Width="25" HorizontalAlignment="Right" Content="√" Click="MathOperation_Click"/>
+            <Button Height="24" Margin="8,-24,0,0" x:Name="btnLOG" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Content="LOG" Click="MathOperation_Click"/>
+            <Button Height="24" Margin="8,-52,0,0" x:Name="btnDel" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Content="1/x" Click="MathOperation_Click"/>
+            <Button Height="24" Margin="8,-80,0,0" x:Name="btnEXP" VerticalAlignment="Top" Width="25" HorizontalAlignment="Left" Content="EXP" Click="MathOperation_Click"/>
+
+        </StackPanel>
+        <StackPanel Margin="0,41,8,57" x:Name="pnl3" Width="48" HorizontalAlignment="Right"  Background="LightGray" Grid.RowSpan="2">
             <StackPanel.BitmapEffect>
                 <OuterGlowBitmapEffect GlowColor="Black" GlowSize="2" />
             </StackPanel.BitmapEffect>
-            <Button Height="24" Margin="8,8,8,0" x:Name="btnC" VerticalAlignment="Top" Width="32" HorizontalAlignment="Center" Content="C"/>
-            <Button Height="24" Margin="8,8,8,0" x:Name="btnCA" VerticalAlignment="Top" Width="32" HorizontalAlignment="Center" Content="C/A"/>
+            <Button Height="24" Margin="8,8,8,0" x:Name="btnC" VerticalAlignment="Top" Width="32" HorizontalAlignment="Center" Content="C" Click="Clear_Click"/>
+            <Button Height="24" Margin="8,8,8,0" x:Name="btnCA" VerticalAlignment="Top" Width="32" HorizontalAlignment="Center" Content="C/A" Click="ClearAll_Click"/>
         </StackPanel>
-        <Button Height="24" Margin="0,130,8,0" x:Name="btnOff" VerticalAlignment="Top" Width="48" HorizontalAlignment="Right" Content="OFF" Click="BtnOff_Click"/>
+        <Button Height="24" Margin="0,60,8,0" x:Name="btnOff" VerticalAlignment="Top" Width="48" HorizontalAlignment="Right" Content="OFF" Click="BtnOff_Click" Grid.Row="1"/>
+        
 
     </Grid>
 </Window>
